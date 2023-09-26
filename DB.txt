@@ -1,0 +1,53 @@
+create database StudentMaster;
+
+-- Create the Students table
+CREATE TABLE Students (
+    SID INT PRIMARY KEY,
+    SName VARCHAR(255),
+    SDOB DATE,
+    Class INT);
+
+-- Create the Subjects table
+CREATE TABLE Subjects (
+    SubjectID INT PRIMARY KEY,
+    SubjectName VARCHAR(50),
+    Type CHAR(1) CHECK (Type IN ('M', 'E')));
+
+-- Create the Classes table
+CREATE TABLE Classes (
+    ClassID INT PRIMARY KEY,
+    ClassName VARCHAR(50)
+);
+
+-- Create the Marks table with foreign keys
+CREATE TABLE Marks (
+    SID INT,
+    ClassID INT,
+    SubjectID INT,
+    FOREIGN KEY (SID) REFERENCES Students(SID),
+    FOREIGN KEY (ClassID) REFERENCES Classes(ClassID),
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
+    PRIMARY KEY (ClassID, SubjectID)
+);
+
+----Insert Records----------
+insert into Students(SID,SName,SDOB,Class)values(1,'Amit Sharma','2/2/2002',10);
+insert into Students(SID,SName,SDOB,Class)values(2,'Prem','4/10/2000',9);
+
+insert into Subjects(SubjectID,SubjectName,Type)values(3,'Math','M');
+insert into Subjects(SubjectID,SubjectName,Type)values(5,'Arts','E');
+
+insert into Classes(ClassID,ClassName)values(2,'9th');
+
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,1,1,10);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,1,2,20);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,1,3,30);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,1,4,10);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,1,5,15);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,2,1,10);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,2,2,20);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,2,3,30);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,2,4,10);
+insert into Marks(SID,ClassID,SubjectID,Marks)values(2,2,5,15);
+
+
